@@ -236,4 +236,24 @@ service todo-service (
 
 ## 니름 패키지 만들기
 
-package.toml 만드는법?
+니름 패키지를 만들기위해서는 `package.toml`이 필요합니다. 아래의 예제 코드는
+`package.toml`의 형식을 보여주고 설명합니다.
+
+```toml
+version = "0.1.0"  # 니름 패키지의 버전입니다. 유의적 버전(http://semver.org/)으로 명시하는 것을 권장합니다.
+
+[[authors]] # 이 니름 패키지를 작성한 사람들의 목록입니다.
+name = "The Doctor" # 패키지 작성자 이름.
+email = "doctor@who.com" # 패키지 작성자의 이메일.
+
+[[authors]]
+name = "Amelia Pond"
+email = "amy@pond.com"
+
+[targets.python] # [targets]에 하위 항목은 컴파일되는 타겟 언어에서 사용되는 메타데이터입니다.
+name = "todo-schema" # 컴파일된 Python 모듈의 이름.
+minimum_runtime = "0.6.0" # 컴파일된 Python 모듈에서 사용할 니름의 [Python 런타임 모듈](https://pypi.org/project/nirum/) 최소 요구 버전.
+
+  [targets.python.renames]
+  todo = "todo_schema" # 니름의 패키지 이름을 그대로 사용하면 이미 존재하는 Python 모듈의 이름과 겹칠 수 있으므로, 컴파일된 니름 패키지의 이름을 재정의할 수 있는 기능입니다.
+```
